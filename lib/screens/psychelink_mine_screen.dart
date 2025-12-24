@@ -3,8 +3,36 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
-class MineScreen extends StatelessWidget {
+class MineScreen extends StatefulWidget {
   const MineScreen({super.key});
+  @override
+  State<MineScreen> createState() => _MineScreenState();
+}
+
+class _MineScreenState extends State<MineScreen> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+      setState(() {
+          _selectedIndex = index;
+      });
+
+      // 根据选中的索引导航到不同的页面
+      switch (index) {
+          case 0: // Home
+              Navigator.pushNamed(context, '/home');
+              break;
+          case 1: // Favorites
+              Navigator.pushNamed(context, '/favorite');
+              break;
+          case 2: // Words
+              Navigator.pushNamed(context, '/words');
+              break;
+          case 3: // Mine
+              // 当前页面，无需导航
+              break;
+      }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,168 +58,286 @@ class MineScreen extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          // Positioned(
-          //   top: 20,
-          //   child: 
-            Container(  
-              width: double.infinity,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: const Color.fromRGBO(26, 26, 31, 1),
-              ),
-              child: Column(
-                children: [
-                  Image.asset(
-                    "assets/images/usefulBanner/touxiang.png",
-                    width: 140,
-                    height: 140,
-                    fit: BoxFit.contain,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
+          Container(  
+            width: double.infinity,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: const Color.fromRGBO(26, 26, 31, 1),
+            ),            
+          ),
 
-                  Text(
-                    "2349343499",
-                    style: TextStyle(
-                      fontSize: 28,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold
-                    ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: 10),
+                Image.asset(
+                  "assets/images/usefulBanner/touxiang.png",
+                  width: 140,
+                  height: 140,
+                  fit: BoxFit.contain,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+
+                Text(
+                  "2349343499",
+                  style: TextStyle(
+                    fontSize: 28,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold
                   ),
-                ],
-              ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 40),
+
+                ElevatedButton(
+                  onPressed: () {
+                    print("111");
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    backgroundColor: const Color.fromRGBO(40, 39 ,44 , 1),
+                    padding: EdgeInsets.all(0),
+                    minimumSize: Size(double.infinity, 0)
+                  ),
+                  child: SizedBox(
+                    height: 60,
+                    width: double.infinity,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+                      child: Row(
+                        children: [
+                          Text(
+                            "Reminder",
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Spacer(),
+                          Image.asset(
+                            'assets/images/iconDetails.png',
+                            width: 14,
+                            height: 14,
+                            fit: BoxFit.fill,
+                          ),
+                        ],
+                      )    ,
+                    )                      
+                  )
+                ),                
+                SizedBox(height: 20),
+
+                ElevatedButton(
+                  onPressed: () {
+                    print("222");
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    backgroundColor: const Color.fromRGBO(39, 39, 44, 1),
+                    padding: EdgeInsets.all(0),
+                    minimumSize: Size(double.infinity, 0)
+                  ),
+                  child: SizedBox(
+                    height: 60,
+                    width: double.infinity,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+                      child: Row(
+                        children: [
+                          Text(
+                            "Photo",
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Spacer(),
+                          Image.asset(
+                            'assets/images/iconDetails.png',
+                            width: 14,
+                            height: 14,
+                            fit: BoxFit.fill,
+                          ),
+                        ],
+                      )    ,
+                    )   
+                  ),
+                ),
+                SizedBox(height: 20),
+
+                ElevatedButton(
+                  onPressed: () {
+                    print("333");
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    backgroundColor: const Color.fromRGBO(39, 39, 44, 1),
+                    padding: EdgeInsets.all(0),
+                    minimumSize: Size(double.infinity, 0)
+                  ),
+                  child: SizedBox(
+                    height: 60,
+                    width: double.infinity,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+                      child: Row(
+                        children: [
+                          Text(
+                            "Privacy Policy",
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Spacer(),
+                          Image.asset(
+                            'assets/images/iconDetails.png',
+                            width: 14,
+                            height: 14,
+                            fit: BoxFit.fill,
+                          ),
+                        ],
+                      )    ,
+                    )   
+                  ),
+                ),
+                SizedBox(height: 20),
+
+                ElevatedButton(
+                  onPressed: () {
+                    print("444");
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    backgroundColor: const Color.fromRGBO(39, 39, 44, 1),
+                    padding: EdgeInsets.all(0),
+                    minimumSize: Size(double.infinity, 0)
+                  ),
+                  child: SizedBox(
+                    height: 60,
+                    width: double.infinity,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+                      child: Row(
+                        children: [
+                          Text(
+                            "Term of Use",
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Spacer(),
+                          Image.asset(
+                            'assets/images/iconDetails.png',
+                            width: 14,
+                            height: 14,
+                            fit: BoxFit.fill,
+                          ),
+                        ],
+                      )    ,
+                    )   
+                  ),
+                ),
+                SizedBox(height: 20),
+
+              ],
             ),
-          //),
-          
-          Positioned(
+          ),
+
+          Positioned(//底部固定的导航栏
             bottom: 0,
-              left: 0,
-              right: 0,
-              child: ClipRRect(
+            left: 0,
+            right: 0,
+            child: ClipRRect(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
                 child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                  child: Container(
-                    height: 90,
-                    decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
-                    ),
-                    child: Stack(
-                      children: [
-                        Positioned(
-                          top: 16,
-                          left: 35,
-                          right: 35,
-                          bottom: 20,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Expanded(
-                                flex: 3,
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.pushNamed(context, '/home');      
-                                  },
-                                  child: Column(
-                                    children: [
-                                      Image.asset(
-                                        "assets/images/iconTabHomeNol.png",
-                                        width: 28,
-                                        height: 28,
-                                      ),
-                                      SizedBox(height:5),
-                                      Text(
-                                        "Home",
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color: Colors.white,
-                                        ),
-                                      )
-                                    ],
-                                  )
-                                ) 
-                              ),
-                              
-                              Expanded(
-                                flex: 3,
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.pushNamed(context, '/favorite');      
-                                  },
-                                  child: Column(
-                                    children: [
-                                      Image.asset(
-                                        "assets/images/iconTabFavoritesNol.png",
-                                        width: 28,
-                                        height: 28,
-                                      ),
-                                      SizedBox(height:5),
-                                      Text(
-                                        "Favorites",
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color: Colors.white,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ),
-
-                              Expanded(
-                                flex: 3,
-                                child: Column(
-                                  children: [
-                                    Image.asset(
-                                      "assets/images/iconTabWordsNol.png",
-                                      width: 28,
-                                      height: 28,
-                                    ),
-                                    SizedBox(height:5),
-                                    Text(
-                                      "Words",
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.white,
-                                      ),
-                                    )
-                                  ],
+                filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                child: BottomNavigationBar(
+                        type: BottomNavigationBarType.fixed,
+                        currentIndex: _selectedIndex,
+                        selectedItemColor: Colors.white,
+                        unselectedItemColor: Colors.grey,
+                        backgroundColor: Colors.white.withValues(alpha: 0.1),
+                        showSelectedLabels: true,
+                        showUnselectedLabels: true,
+                        elevation: 0,
+                        onTap: _onItemTapped,
+                        items: [
+                            BottomNavigationBarItem(//home
+                                icon: Image.asset(
+                                "assets/images/iconTabHomeNol.png",
+                                width: 24,
+                                height: 24,
                                 ),
-                              ),
-
-                              Expanded(
-                                flex: 3,
-                                child: Column(
-                                  children: [
-                                    Image.asset(
-                                      "assets/images/iconTabMineNol.png",
-                                      width: 28,
-                                      height: 28,
-                                    ),
-                                    SizedBox(height:5),
-                                    Text(
-                                      "Mine",
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.white,
-                                      ),
-                                    )
-                                  ],
+                                activeIcon: Image.asset(
+                                "assets/images/iconTabHomeSel.png",
+                                width: 24,
+                                height: 24,
                                 ),
-                              )
-
-                            ],
-                          ),
-
-                        )
-                      ],                     
-                    ),
-                  ),
-                )                 
-              ),
-          )
+                                label: "Home",
+                            ),
+                            BottomNavigationBarItem(//favorite
+                                icon: Image.asset(
+                                "assets/images/iconTabFavoritesNol.png",
+                                width: 24,
+                                height: 24,
+                                ),
+                                activeIcon: Image.asset(
+                                "assets/images/iconTabFavoritesSel.png",
+                                width: 24,
+                                height: 24,
+                                ),
+                                label: "Favorite",
+                            ),
+                            BottomNavigationBarItem(//words
+                                icon: Image.asset(
+                                "assets/images/iconTabWordsNol.png",
+                                width: 24,
+                                height: 24,
+                                ),
+                                activeIcon: Image.asset(
+                                "assets/images/iconTabWordsSel.png",
+                                width: 24,
+                                height: 24,
+                                ),
+                                label: "Words",
+                            ),
+                            BottomNavigationBarItem(//mine
+                                icon: Image.asset(
+                                "assets/images/iconTabMineNol.png",
+                                width: 24,
+                                height: 24,
+                                ),
+                                activeIcon: Image.asset(
+                                "assets/images/iconTabMineSel.png",
+                                width: 24,
+                                height: 24,
+                                ),
+                                label: "Mine",
+                            ),                  
+                        ],
+                    ),                                   
+                )              
+            ),
+          )   
         ],
       ),
     );
