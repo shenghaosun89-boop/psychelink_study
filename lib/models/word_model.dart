@@ -48,7 +48,7 @@ List<WordModel> wordsList = [
   ),
 
   WordModel(
-    keyWord: "Study",
+    keyWord: "Studies",
     iconPath: "assets/images/iconStudies.png",
     description: "Take a deep breath in the morning and fill your lungs with sunshine - health is the lowest form of luxury!",
     backImgPath: "assets/images/usefulBanner/imgWordsStudies@3x.png",

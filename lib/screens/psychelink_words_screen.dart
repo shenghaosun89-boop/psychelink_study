@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import '../models/word_model.dart';
+import 'package:flutter/services.dart' show rootBundle;
+import 'dart:math';
+import 'dart:convert';
 
 
 class WordsScreen extends StatefulWidget {
@@ -13,6 +16,52 @@ class WordsScreen extends StatefulWidget {
 class _WordsScreenState extends State<WordsScreen> {
   int _selectedIndex = 0;
   int _selectedWordIndex = 0;
+  String _currentRandomSentence = "";
+  List<List<String>> _sentencesList = [];
+  
+
+  Future<void> _loadWordsJson() async {
+    String jsonString = await rootBundle.loadString('assets/words.json');
+    List<dynamic> jsonData = json.decode(jsonString);
+    
+    // 提取每个关键词的句子列表
+    List<List<String>> sentencesList = [];
+    for (var wordData in jsonData) {
+      List<String> sentences = List<String>.from(wordData['sentences']);
+      sentencesList.add(sentences);
+    }
+    
+    setState(() {
+      _sentencesList = sentencesList;
+      if (_sentencesList.isNotEmpty && _sentencesList[_selectedWordIndex].isNotEmpty) {
+        _currentRandomSentence = _getRandomSentence(_selectedWordIndex);
+      }
+    });
+  }
+
+  String _getRandomSentence(int wordIndex) {
+    if (_sentencesList.isNotEmpty && 
+        wordIndex < _sentencesList.length && 
+        _sentencesList[wordIndex].isNotEmpty) {
+      int randomIndex = Random().nextInt(_sentencesList[wordIndex].length);
+      return _sentencesList[wordIndex][randomIndex];
+    }
+    return "sentences not found";
+  }
+  
+  // 刷新随机文案
+  void _refreshRandomSentence() {
+    setState(() {
+      _currentRandomSentence = _getRandomSentence(_selectedWordIndex);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = 2;
+    _loadWordsJson();
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -39,6 +88,9 @@ class _WordsScreenState extends State<WordsScreen> {
   void _onWordButtonTapped(int index) {
     setState(() {
       _selectedWordIndex = index;
+      if (_sentencesList.isNotEmpty) {
+        _currentRandomSentence = _getRandomSentence(index);
+      }
     });
   }
 
@@ -82,10 +134,10 @@ class _WordsScreenState extends State<WordsScreen> {
                     height: 50,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: 5,
+                      itemCount: wordsList.length,
                       itemBuilder: (context, index) {
                         return Container(
-                          width: 120,
+                          width: 130,
                           margin: EdgeInsets.symmetric(horizontal: 10),
                           child: ElevatedButton(
                             onPressed: () {
@@ -163,37 +215,51 @@ class _WordsScreenState extends State<WordsScreen> {
                                 width: MediaQuery.of(context).size.width * 0.90,
                                 height: MediaQuery.of(context).size.height * 0.3,
                                 decoration: BoxDecoration(
-                                  color: Colors.black.withValues(alpha: 0.2),
+                                  color: Colors.white.withValues(alpha: 0.1),
                                   borderRadius: BorderRadius.circular(28),
                                 ),
-                                child: Center(
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                                    child: Text(
-                                      wordsList[_selectedWordIndex].description,
-                                      style: TextStyle(
-                                        fontFamily: "Montserrat",
-                                        fontStyle: FontStyle.italic,
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 20,
-                                        color: Colors.white,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                      softWrap: true,
-                                      overflow: TextOverflow.visible,
+                                child: Stack(
+                                  children: [
+                                    Center(
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                                        child: Text(
+                                          "\"$_currentRandomSentence\"",
+                                          style: TextStyle(
+                                            fontFamily: "Montserrat",
+                                            fontStyle: FontStyle.italic,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 20,
+                                            color: Colors.white,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                          softWrap: true,
+                                          overflow: TextOverflow.visible,
+                                        ),
+                                      )                                      
                                     ),
-                                  )
-                                  
-                                ),
+                                    Positioned(
+                                      bottom: 20,
+                                      right: 20,
+                                      child: GestureDetector(
+                                        onTap: _refreshRandomSentence,
+                                        child: Image.asset("assets/images/btnRefresh.png"),
+                                      )                                     
+                                    )
+                                  ],
+                                ) 
                               ),
                             )
                           )
+                        ),
+                        Positioned(
+                          top: MediaQuery.of(context).size.height * 0.31,
+                          left: 20,
+                          child: Image.asset("assets/images/imgQuotationMark.png"),
                         )  
                       ],
                     ),
                   )
-
-
                 ],
               ),
             )

@@ -12,6 +12,12 @@ class FavoriteScreen extends StatefulWidget {
 class _FavoriteScreenState extends State<FavoriteScreen> {
   int _selectedIndex = 0;
 
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = 1;
+  }
+
   void _onItemTapped(int index) {
       setState(() {
           _selectedIndex = index;

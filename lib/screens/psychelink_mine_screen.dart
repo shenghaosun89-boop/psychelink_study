@@ -12,6 +12,12 @@ class MineScreen extends StatefulWidget {
 class _MineScreenState extends State<MineScreen> {
   int _selectedIndex = 0;
 
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = 3;
+  }
+
   void _onItemTapped(int index) {
       setState(() {
           _selectedIndex = index;

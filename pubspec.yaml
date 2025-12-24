@@ -23,7 +23,7 @@ flutter:
     - assets/images/
     - assets/images/usefulBanner/
     - assets/singleImages/
-
+    - assets/words.json
   fonts:
     - family: AMSTERDAM-SERIF
       fonts:
