@@ -46,7 +46,7 @@ List<ThemeModel> themeList = [
       ),
       StepData(//step2
         backgroundImage: "assets/images/usefulBanner/imgMirror2.png",
-        topText: "Taking charge of my own happiness.Taking charge of.",
+        topText: "Taking charge of my own happiness.",
         bottomText: "Good job!",
       ),
       StepData(//step3
@@ -56,7 +56,7 @@ List<ThemeModel> themeList = [
       ),
       StepData(//step4
         backgroundImage: "assets/images/usefulBanner/imgMirror4.png",
-        topText: "Taking charge of my own happiness.Taking charge of.",
+        topText: "Taking charge of my own happiness.",
         bottomText: "Good job!",
       ),
       StepData(//step5
@@ -66,7 +66,7 @@ List<ThemeModel> themeList = [
       ),
       StepData(//step6
         backgroundImage: "assets/images/usefulBanner/imgMirror6.png",
-        topText: "Taking charge of my own happiness.Taking charge of.",
+        topText: "Taking charge of my own happiness.",
         bottomText: "Good job!",
       ),
     ]
@@ -81,7 +81,7 @@ List<ThemeModel> themeList = [
     stepDataList: [
       StepData(//step1
         backgroundImage: "assets/images/usefulBanner/imgLotus1.png",
-        topText: "Taking charge of my own happiness.Taking charge of.",
+        topText: "Taking charge of my own happiness.",
         bottomText: "Touch to start recording",
       ),
       StepData(//step2
@@ -91,7 +91,7 @@ List<ThemeModel> themeList = [
       ),
       StepData(//step3
         backgroundImage: "assets/images/usefulBanner/imgLotus3.png",
-        topText: "Taking charge of my own happiness.Taking charge of.",
+        topText: "Taking charge of my own happiness.",
         bottomText: "Almost there, try again!",
       ),
       StepData(//step4
@@ -101,7 +101,7 @@ List<ThemeModel> themeList = [
       ),
       StepData(//step5
         backgroundImage: "assets/images/usefulBanner/imgLotus5.png",
-        topText: "Taking charge of my own happiness.Taking charge of.",
+        topText: "Taking charge of my own happiness.",
         bottomText: "Almost there, try again!",
       ),
     ]
@@ -121,7 +121,7 @@ List<ThemeModel> themeList = [
       ),
       StepData(//step2
         backgroundImage: "assets/images/usefulBanner/imgBubbles2.png",
-        topText: "Taking charge of my own happiness.Taking charge of.",
+        topText: "Taking charge of my own happiness.",
         bottomText: "Almost there, try again!",
       ),
       StepData(//step3
@@ -131,7 +131,7 @@ List<ThemeModel> themeList = [
       ),
       StepData(//step4
         backgroundImage: "assets/images/usefulBanner/imgBubbles4.png",
-        topText: "Taking charge of my own happiness.Taking charge of.",
+        topText: "Taking charge of my own happiness.",
         bottomText: "Almost there, try again!",
       ),    
     ]
@@ -151,7 +151,7 @@ List<ThemeModel> themeList = [
       ),
       StepData(//step2
         backgroundImage: "assets/images/usefulBanner/imgSpring2.png",
-        topText: "Taking charge of my own happiness.Taking charge of.",
+        topText: "Taking charge of my own happiness.",
         bottomText: "Almost there, try again!",
       ),
       StepData(//step3
@@ -176,7 +176,7 @@ List<ThemeModel> themeList = [
       ),
       StepData(//step2
         backgroundImage: "assets/images/usefulBanner/imgApple2.png",
-        topText: "Taking charge of my own happiness.Taking charge of.",
+        topText: "Taking charge of my own happiness.",
         bottomText: "Almost there, try again!",
       ),
       StepData(//step3
@@ -186,7 +186,7 @@ List<ThemeModel> themeList = [
       ),
       StepData(//step4
         backgroundImage: "assets/images/usefulBanner/imgApple4.png",
-        topText: "Taking charge of my own happiness.Taking charge of.",
+        topText: "Taking charge of my own happiness.",
         bottomText: "Almost there, try again!",
       ),
     ]
@@ -206,7 +206,7 @@ List<ThemeModel> themeList = [
       ),
       StepData(//step2
         backgroundImage: "assets/images/usefulBanner/imgFlower2.png",
-        topText: "Taking charge of my own happiness.Taking charge of.",
+        topText: "Taking charge of my own happiness.",
         bottomText: "Almost there, try again!",
       ),
       StepData(//step3
@@ -216,7 +216,7 @@ List<ThemeModel> themeList = [
       ),
       StepData(//step4
         backgroundImage: "assets/images/usefulBanner/imgFlower4.png",
-        topText: "Taking charge of my own happiness.Taking charge of.",
+        topText: "Taking charge of my own happiness.",
         bottomText: "Almost there, try again!",
       ),
       StepData(//step5

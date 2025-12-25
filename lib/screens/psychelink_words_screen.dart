@@ -150,7 +150,7 @@ class _WordsScreenState extends State<WordsScreen> {
                                   color: index == _selectedWordIndex ?
                                   Color.fromRGBO(wordsList[index].colorList[0], wordsList[index].colorList[1], wordsList[index].colorList[2], 1)
                                   : Colors.white,
-                                  width: index == _selectedWordIndex ? 4 : 1,
+                                  width: index == _selectedWordIndex ? 3 : 1,
                                 )
                               ),
                               backgroundColor: Colors.transparent,

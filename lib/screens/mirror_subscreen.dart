@@ -67,15 +67,13 @@ class _MirrorSubscreenState extends State<MirrorSubscreen> {
                 IconButton(
                   icon: Icon(Icons.arrow_back_ios, color: Colors.white),
                   onPressed: (){
-                    Navigator.pop(context);
+                    Navigator.pop(context);//返回上一个页面
                   },
                 ),
-                Expanded(
+                Expanded(//状态指示短横线
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center, 
-                    children: List.generate(
-                      _currentTheme.steps,
-                      (index) => Container(
+                    children: List.generate(_currentTheme.steps,(index) => Container(
                         margin: EdgeInsets.symmetric(horizontal: 5),
                         width: 20,
                         height: 3,
