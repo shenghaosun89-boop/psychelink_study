@@ -113,7 +113,7 @@ class _PsychelinkHomeScreenState extends State<HomeScreen> {
                   _resetAllProgress();
                 },
               ),
-              SizedBox(width: 10), // 添加一点右边距
+              SizedBox(width: 10), 
             ],
             title: Container(
                 padding: EdgeInsets.only(left: 20),
