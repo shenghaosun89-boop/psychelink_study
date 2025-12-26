@@ -12,7 +12,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: "PsycheLink",
-      initialRoute: AppRoutes.home,
+      initialRoute: "/splash",
       onGenerateRoute: AppRoutes.generateRoute,
     );
   }

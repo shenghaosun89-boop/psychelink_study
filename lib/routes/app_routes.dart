@@ -5,8 +5,10 @@ import '../screens/psychelink_favorite_screen.dart';
 import '../screens/psychelink_mine_screen.dart';
 import '../screens/psychelink_words_screen.dart';
 import '../screens/mirror_subscreen.dart';
+import '../screens/psychelink_splash_screen.dart';
 
  class AppRoutes {
+  static const String splash = '/splash';
   static const String home = '/';
   static const String favorite = '/favorite';
   static const String mine = '/mine';
@@ -15,6 +17,8 @@ import '../screens/mirror_subscreen.dart';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case splash:
+       return MaterialPageRoute(builder: (_) => const SplashScreen());
       case home:
        return MaterialPageRoute(builder: (_) => const HomeScreen());
       case favorite:
@@ -26,7 +30,8 @@ import '../screens/mirror_subscreen.dart';
       case mirrorSubPage:
        final Map<String, dynamic>? arguments = settings.arguments as Map<String, dynamic>?;
        final int themeIndex = arguments?['themeIndex'] ?? 0;
-       return MaterialPageRoute(builder: (_) => MirrorSubscreen(themeIndex: themeIndex));
+       final bool isLocked = arguments?['isLocked'] ?? false;
+       return MaterialPageRoute(builder: (_) => MirrorSubscreen(themeIndex: themeIndex, isLocked: isLocked));
       default:
       return MaterialPageRoute(builder: (_) => const HomeScreen());
     }

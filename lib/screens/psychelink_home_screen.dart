@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:ui';
 import '../models/theme_model.dart';
 
@@ -11,6 +12,47 @@ class HomeScreen extends StatefulWidget {
 
 class _PsychelinkHomeScreenState extends State<HomeScreen> {
     int _selectedIndex = 0;
+    Map<int, bool> _lockedStatus = {};
+
+    Future<bool> _checkIsScreenLocked(int index) async {
+      if (index < 4) {
+        //print('Theme $index is unlocked (less than 4)');
+        return false;
+      }
+      else {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        for (int i = 0; i < index; i++) {
+          late ThemeModel currentTheme = themeList[i];
+          late int endStep = currentTheme.steps - 1;
+          String key = 'theme_${i}_step_$endStep';
+          bool isStepCompleted = prefs.getBool(key) ?? false;
+          //print('Checking theme $i completion with key: $key, completed: $isStepCompleted');
+          if (!isStepCompleted) {
+            //print('Theme $index is locked because theme $i is not completed');
+            return true;
+          }
+        }
+        //print('Theme $index is unlocked (all previous themes completed)');
+        return false;
+      }
+    }
+
+    void _loadAllLockStatus() async {
+      Map<int, bool> newLockedStatus = {};
+      for (int i = 0; i < themeList.length; i++) {
+        newLockedStatus[i] = await _checkIsScreenLocked(i);
+      }
+      setState(() {
+        _lockedStatus = newLockedStatus;
+      });
+    }
+
+    @override
+    void initState() {
+      super.initState();
+      _selectedIndex = 0;
+      _loadAllLockStatus();
+    }
 
     void _onItemTapped(int index) {
         setState(() {
@@ -86,12 +128,14 @@ class _PsychelinkHomeScreenState extends State<HomeScreen> {
                           children: [
                             ...themeList.asMap().entries.map((entry) {
                               int index = entry.key;
+                              bool isLocked = _lockedStatus[index] ?? true; 
+
                               ThemeModel theme = entry.value;
                               return Column(
                                 children: [
                                   ElevatedButton(
                                     onPressed: () {
-                                      Navigator.pushNamed(context, '/mirror',arguments: {'themeIndex': index});
+                                      Navigator.pushNamed(context, '/mirror',arguments: {'themeIndex': index, 'isLocked': isLocked});
                                     },
                                     style: ElevatedButton.styleFrom(
                                       shape: RoundedRectangleBorder(
@@ -120,6 +164,16 @@ class _PsychelinkHomeScreenState extends State<HomeScreen> {
                                               ),
                                             ),
                                           ),
+                                          if (isLocked)
+                                            Positioned(
+                                              right: 20,
+                                              bottom: 20,
+                                              child: Image.asset(
+                                                "assets/images/iconLocked.png",
+                                                width: 40,
+                                                height: 40,
+                                              ),
+                                            ),
                                           Positioned(
                                             left: 20,
                                             top: 13,
