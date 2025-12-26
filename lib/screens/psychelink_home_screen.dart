@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:ui';
 import '../models/theme_model.dart';
+import '../utils/lock_status_notifier.dart';
 
 class HomeScreen extends StatefulWidget {
     const HomeScreen({super.key});
@@ -47,11 +48,33 @@ class _PsychelinkHomeScreenState extends State<HomeScreen> {
       });
     }
 
+    // 完成状态重置
+    Future<void> _resetAllProgress() async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      
+      for (int themeIndex = 0; themeIndex < themeList.length; themeIndex++) {
+        ThemeModel theme = themeList[themeIndex];
+        for (int stepIndex = 0; stepIndex < theme.steps; stepIndex++) {
+          String key = 'theme_${themeIndex}_step_$stepIndex';
+          await prefs.setBool(key, false);
+        }
+      }
+      
+      LockStatusNotifier().notifyStatusChanged('LOCK_STATUS_CHANGED');
+    }
+
     @override
     void initState() {
       super.initState();
       _selectedIndex = 0;
       _loadAllLockStatus();
+
+      //监听状态变化
+      LockStatusNotifier().stream.listen((eventType) {
+        if (eventType == 'LOCK_STATUS_CHANGED') {
+          _loadAllLockStatus();
+        }
+      });
     }
 
     void _onItemTapped(int index) {
@@ -81,8 +104,17 @@ class _PsychelinkHomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
             backgroundColor: const Color.fromRGBO(26, 26 , 31, 1),
             leadingWidth: 0, // 移除leading的宽度
-            leading: Container(), // 添加一个空的leading组件
+            leading: Container(), 
             titleSpacing: 0, // 移除title的默认间距
+            actions: [
+              IconButton(//完成状态重置按钮
+                icon: Icon(Icons.refresh, color: Colors.white),
+                onPressed: () {
+                  _resetAllProgress();
+                },
+              ),
+              SizedBox(width: 10), // 添加一点右边距
+            ],
             title: Container(
                 padding: EdgeInsets.only(left: 20),
                 alignment: Alignment.topLeft,
@@ -164,7 +196,7 @@ class _PsychelinkHomeScreenState extends State<HomeScreen> {
                                               ),
                                             ),
                                           ),
-                                          if (isLocked)
+                                          if (isLocked)//未解锁的板块，有锁定图标
                                             Positioned(
                                               right: 20,
                                               bottom: 20,
