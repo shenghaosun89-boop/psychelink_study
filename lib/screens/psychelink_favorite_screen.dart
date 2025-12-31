@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:psychelink_study/utils/lock_status_notifier.dart';
 import 'dart:ui';
 import '../utils/favorite_utils.dart';
 
@@ -18,6 +19,12 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
     super.initState();
     //_selectedIndex = 1;
     _loadFavorites();
+
+    LockStatusNotifier().stream.listen((eventType) {
+      if (eventType == 'FAVORITE_STATUS_CHANGED') {
+        _loadFavorites();
+      }
+    });
   }
 
   Future<void> _loadFavorites() async {

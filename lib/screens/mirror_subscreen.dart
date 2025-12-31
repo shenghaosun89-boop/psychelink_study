@@ -96,6 +96,7 @@ class _MirrorSubscreenState extends State<MirrorSubscreen> {
       _isFavorite = !_isFavorite;
     });
     _saveFavoriteStatus();
+    LockStatusNotifier().notifyStatusChanged('FAVORITE_STATUS_CHANGED');
   }
 
   //点击录音按钮时触发：
