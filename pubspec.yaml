@@ -10,13 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   shared_preferences: ^2.2.2   
-  flutter_native_splash: ^2.3.2
 
-flutter_native_splash:
-  color: "#1B1A1F"  
-  color_dark: "#1B1A1F"
-  android: true
-  ios: true  
 
 dev_dependencies:
   flutter_test:

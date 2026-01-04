@@ -86,7 +86,7 @@ class _PsychelinkHomeScreenState extends State<HomeScreen> {
         });
     }
 
-    // 动态构建AppBar
+
     PreferredSizeWidget? _buildAppBar() {
       switch (_selectedIndex) {
         case 0: // Home 页面的 AppBar
